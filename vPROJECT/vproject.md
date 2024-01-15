@@ -7,7 +7,7 @@ We would like to modernize our application and make it more effective by using A
 
 Once we have our stack on AWS Cloud, our architectural design will look something like the diagram below:
 
-![insert](/image/vproject_diagram.jpg)
+![insert](./image/vproject_diagram.jpg)
 
 Users will access our website by using a URL and that URL will be pointed to an endpoint. This entry will be mentioned in namecahe DNS.
 
