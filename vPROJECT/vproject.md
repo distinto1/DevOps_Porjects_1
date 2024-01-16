@@ -29,7 +29,7 @@ The application needs backend servers, which are `MySQL`, `Memcache` and `Rabbit
 
 So Tomcat instances will access the backend servers with a name(s) which will be mentioned in Route 53.
 
-Private dns where the private IP address of our background servers will be mentioned.
+Private DNS where the private IP address of our background servers will be mentioned.
 
 These backend ec2 instances, which will be running mysql, RabbitMQ Memcache will be in a separate security group.
 
@@ -97,7 +97,7 @@ Save your configuration.
 
 ![insert](./image/vprofile-BACKEND-SG.PNG)
 
-Remeber to create your KEYPAIR
+Remember to create your KEYPAIR
 
 ## CREATE EC2 INSTANCES
 
@@ -165,7 +165,7 @@ Under `Keypair` select the keypair you created.
 
 Under Security Group select the name of the security group you created for backend services.
 
-Under `Advanced Details` scroll down to `userdata` copy the `memcache.sh script` from userdata folder in cloned REPO and paste here.
+Under `Advanced Details` scroll down to `userdata` copy the `memcache.sh script` from userdata folder in cloned REPO and paste it here.
 
 Click on `Launch Instance`
 
@@ -193,7 +193,7 @@ Under `Keypair` select the keypair you created.
 
 Under Security Group select the name of the security group you created for backend services.
 
-Under `Advanced Details` scroll down to `userdata` copy the `rabbitmq.sh script` from userdata folder in cloned REPO and paste here.
+Under `Advanced Details` scroll down to `userdata` copy the `rabbitmq.sh script` from userdata folder in cloned REPO and paste it here.
 
 Click on `Launch Instance`
 
@@ -208,7 +208,7 @@ For `name` use `vprofile_app01`
 
 Select `Ubuntu` in quick start
 
-From the dropdowm make sure `Ubuntu Server 22.04`
+From the dropdown make sure `Ubuntu Server 22.04`
 
 Under `instance type`
 Select `t2-micro` having `Free tier eligible` on it.
@@ -217,7 +217,7 @@ Under `Keypair` select the keypair you created.
 
 Under Security Group select the name of the security group you created for backend services.
 
-Under `Advanced Details` scroll down to `userdata` copy the `tomcat_ubuntu.sh script` from userdata folder in cloned REPO and paste here.
+Under `Advanced Details` scroll down to `userdata` copy the `tomcat_ubuntu.sh script` from userdata folder in cloned REPO and paste it here.
 
 Click on `Launch Instance`
 
@@ -313,11 +313,11 @@ Default Output format: Json
 
 ```
 
-### Create S3 Bucket from Command line
+### Create an S3 Bucket from Command line
 
 ```
 aws s3 mb s3://[bucket-name]
-aws s3 cp target/vprofile-v2.war s3://[Buket-name]/
+aws s3 cp target/vprofile-v2.war s3://[Bucket-name]/
 ```
 
 ![insert](./image/bucket%20created.PNG)
@@ -326,7 +326,7 @@ aws s3 cp target/vprofile-v2.war s3://[Buket-name]/
 
 ### Download Artifacts into Tomcat Instance
 
-WE will need to authenticate Tomcat EC2 intance with S3 using ROLES.
+We will need to authenticate Tomcat EC2 intance with S3 using ROLES.
 
 Go to `IAM` select on `roles`
 
@@ -340,7 +340,7 @@ Search for Policy on S3
 
 Select `AmazonS3fullaccess`
 
-Give role a name
+Give the role a name
 
 Click `Create Policy`
 
@@ -397,7 +397,7 @@ Under choose a target type, choose `instances`
 
 ![insert](./image/loadbalancers&DNS--01.PNG)
 
-Traget name use `vprofile-app-TG`
+Target name use `vprofile-app-TG`
 
 ![insert](./image/loadbalancers&DNS--02.PNG)
 
@@ -407,7 +407,7 @@ Health Check Path: `/login`
 
 Under advanced Health Checks, select `OVERRIDE: 8080`
 
-![insert](./image/autoscaling03.PNG)
+![insert](./image/loadbalancers&DNS--03.PNG)
 
 Healthy Threshold: `2`
 
@@ -419,7 +419,7 @@ Confirm the port number to `8080`
 
 Click on `Include as pending below`
 
-![insert](./image/autoscaling04.PNG)
+![insert](./image/loadbalancers&DNS--04.PNG)
 
 Click `Create Target Group`
 
@@ -469,6 +469,7 @@ Use the Copied DNS name to create a CNAME record in namecheap.com
 Use the DNS name to access the web application while waiting.
 
 http://vprofileapp.ugotdevopsexpresions.site
+
 https://vprofileapp.ugotdevopsexpresions.site
 
 ![insert](./image/loadbalancers&DNS--11.PNG)
@@ -565,7 +566,7 @@ Under Health Checks, select `Turn on Elastic LB health checks`
 
 ![insert](./image/autoscaling11.PNG)
 
-Cick `NEXT`
+Click `NEXT`
 
 > Desired => 1   Min => 1   Max => 4
 
